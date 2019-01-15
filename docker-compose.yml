@@ -1,0 +1,8 @@
+hexo:
+  container_name: 'hexo-material'
+  image: novate/hexo-material
+  restart: always
+  ports:
+    - '4000:4000'
+  volumes:
+    - "/docker/hexo/var/opt/blog:/var/opt/blog"
