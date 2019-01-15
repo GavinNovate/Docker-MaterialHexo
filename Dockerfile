@@ -7,7 +7,7 @@ RUN apt-get update \
   && hexo init /var/opt/hexo \
   && cd /var/opt/hexo \
   && npm i -S hexo-generator-search hexo-generator-feed hexo-renderer-less hexo-autoprefixer hexo-generator-json-content \
-  && git clone https://github.com/stkevintan/hexo-theme-material-flow themes/material-flow
+  && git clone http://github.com/stkevintan/hexo-theme-material-flow themes/material-flow
 
 WORKDIR /var/opt/blog
 
