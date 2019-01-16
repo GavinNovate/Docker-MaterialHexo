@@ -1,19 +1,19 @@
-FROM novate/node
+FROM novate/hexo
 
-RUN apt-get update \
-  && apt-get install -y git-core --no-install-recommends \
+RUN buildDeps='git-core ca-certificates' \
+  && apt-get update \
+  && apt-get install -y $buildDeps --no-install-recommends \
   && rm -rf /var/lib/apt/lists/* \
-  && npm install -g hexo-cli \
-  && hexo init /var/opt/hexo \
   && cd /var/opt/hexo \
   && npm i -S hexo-generator-search hexo-generator-feed hexo-renderer-less hexo-autoprefixer hexo-generator-json-content \
-  && git clone http://github.com/stkevintan/hexo-theme-material-flow themes/material-flow
-
-WORKDIR /var/opt/blog
+  && git clone http://github.com/stkevintan/hexo-theme-material-flow themes/material-flow \
+  && apt-get purge -y --auto-remove $buildDeps
 
 EXPOSE 4000
 
 VOLUME /var/opt/blog
+
+WORKDIR /var/opt/blog
 
 COPY assets/source/images/avatar.png /var/opt/hexo/source/images/
 COPY assets/source/images/favicon.ico /var/opt/hexo/source/images/
